@@ -27,4 +27,18 @@ public class BibliotecaService {
     return "Salvo!";
   }
 
+  public String updateBook(Integer id, Book book) {
+    Optional<Book> livro = bookDao.findById(id);
+    Book _livro = livro.get();
+    _livro.setTitulo(book.getTitulo());
+    _livro.setAutor(book.getAutor());
+    bookDao.save(_livro);
+    return "Atualizado!";
+  }
+
+  public String deleteBook(Integer id) {
+    bookDao.deleteById(id);
+    return "Deletado!";
+  }
+
 }
